@@ -1,29 +1,45 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@* Toggle Nav *@
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">HardysWebSystem</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
 </div>
 
+@* Nav Menu *@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
+
+        @* Home *@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </li>
+
+        @* Counter *@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="counter">
                 <span class="oi oi-plus" aria-hidden="true"></span> Counter
             </NavLink>
         </li>
+
+        @* Fetch Data *@
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="fetchdata">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
             </NavLink>
         </li>
+
+        @* Todo *@
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="todo">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Todo
+            </NavLink>
+        </li>
     </ul>
 </div>
+
 
 @code {
     private bool collapseNavMenu = true;
@@ -34,4 +50,5 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
 }
