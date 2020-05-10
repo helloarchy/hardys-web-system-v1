@@ -78,7 +78,8 @@ namespace HardysWebSystem.Server
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -98,6 +99,9 @@ namespace HardysWebSystem.Server
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            // Seed database
+            // DbSeed.SeedDatabase(context, userManager).Wait();
 
             app.UseEndpoints(endpoints =>
             {
