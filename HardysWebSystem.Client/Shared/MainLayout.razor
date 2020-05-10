@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager navigationManager
-@inject IdentityAuthenticationStateProvider authStateProvider
+@inject NavigationManager NavigationManager
+@inject IdentityAuthenticationStateProvider AuthStateProvider
 
 <AuthorizeView>
     <Authorized>
@@ -29,13 +29,13 @@
     {
         if (!(await AuthenticationState).User.Identity.IsAuthenticated)
         {
-            navigationManager.NavigateTo("/login");
+            NavigationManager.NavigateTo("/login");
         }
     }
 
     async Task LogoutClick()
     {
-        await authStateProvider.Logout();
-        navigationManager.NavigateTo("/login");
+        await AuthStateProvider.Logout();
+        NavigationManager.NavigateTo("/login");
     }
 }

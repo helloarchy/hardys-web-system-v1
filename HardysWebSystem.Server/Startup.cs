@@ -1,7 +1,6 @@
 using HardysWebSystem.Server.Data;
 using HardysWebSystem.Server.Models;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components.Server;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +8,8 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
 using System;
 using System.Linq;
-using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace HardysWebSystem.Server

@@ -1,32 +1,32 @@
 ﻿@page "/login"
 @layout LoginLayout
-@inject NavigationManager navigationManager
-@inject IdentityAuthenticationStateProvider authStateProvider
+@inject NavigationManager NavigationManager
+@inject IdentityAuthenticationStateProvider AuthStateProvider
 
 <h1 class="h2 font-weight-normal login-title">
-    Blazor with Identity Sample
+    Hardys Web System
 </h1>
 
-<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="loginParameters">
+<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="LoginParameters">
     <DataAnnotationsValidator />
     <h4 class="font-weight-normal text-center">Login</h4>
 
     <label for="inputUsername" class="sr-only">User Name</label>
-    <InputText id="inputUsername" class="form-control" @bind-Value="loginParameters.UserName" autofocus placeholder="Username" />
-    <ValidationMessage For="@(() => loginParameters.UserName)" />
+    <InputText id="inputUsername" class="form-control" @bind-Value="LoginParameters.UserName" autofocus placeholder="Username" />
+    <ValidationMessage For="@(() => LoginParameters.UserName)" />
 
     <label for="inputPassword" class="sr-only">Password</label>
-    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="loginParameters.Password" />
-    <ValidationMessage For="@(() => loginParameters.Password)" />
+    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="LoginParameters.Password" />
+    <ValidationMessage For="@(() => LoginParameters.Password)" />
 
     <div class="form-check m-3">
-        <InputCheckbox id="inputRememberMe" class="form-check-input" @bind-Value="@loginParameters.RememberMe" />
+        <InputCheckbox id="inputRememberMe" class="form-check-input" @bind-Value="@LoginParameters.RememberMe" />
         <label class="form-check-label" for="inputRememberMe">Remember Me</label>
     </div>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 
-    <label class="text-danger">@error</label>
+    <label class="text-danger">@Error</label>
 
     <NavLink href="register">
         <h6 class="font-weight-normal text-center">Create account</h6>
@@ -34,20 +34,20 @@
 </EditForm>
 
 @code{
-    LoginParameters loginParameters { get; set; } = new LoginParameters();
-    string error { get; set; }
+    LoginParameters LoginParameters { get; } = new LoginParameters();
+    string Error { get; set; }
 
     async Task OnSubmit()
     {
-        error = null;
+        Error = null;
         try
         {
-            await authStateProvider.Login(loginParameters);
-            navigationManager.NavigateTo("");
+            await AuthStateProvider.Login(LoginParameters);
+            NavigationManager.NavigateTo("");
         }
         catch (Exception ex)
         {
-            error = ex.Message;
+            Error = ex.Message;
         }
     }
 }

@@ -1,31 +1,31 @@
 ﻿@page "/register"
 @layout LoginLayout
-@inject NavigationManager navigationManager
-@inject IdentityAuthenticationStateProvider authStateProvider
+@inject NavigationManager NavigationManager
+@inject IdentityAuthenticationStateProvider AuthStateProvider
 
 <h1 class="h2 font-weight-normal login-title">
-    Blazor with Identity Sample
+    Hardys Web System
 </h1>
 
-<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="registerParameters">
-    <DataAnnotationsValidator />
+<EditForm class="form-signin" OnValidSubmit="OnSubmit" Model="RegisterParameters">
+    <DataAnnotationsValidator/>
     <h4 class="font-weight-normal text-center">Create Account</h4>
 
     <label for="inputUsername" class="sr-only">User Name</label>
-    <InputText id="inputUsername" class="form-control" placeholder="Username" autofocus @bind-Value="@registerParameters.UserName" />
-    <ValidationMessage For="@(() => registerParameters.UserName)" />
+    <InputText id="inputUsername" class="form-control" placeholder="Username" autofocus @bind-Value="@RegisterParameters.UserName"/>
+    <ValidationMessage For="@(() => RegisterParameters.UserName)"/>
 
     <label for="inputPassword" class="sr-only">Password</label>
-    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="@registerParameters.Password" />
-    <ValidationMessage For="@(() => registerParameters.Password)" />
+    <InputText type="password" id="inputPassword" class="form-control" placeholder="Password" @bind-Value="@RegisterParameters.Password"/>
+    <ValidationMessage For="@(() => RegisterParameters.Password)"/>
 
     <label for="inputPasswordConfirm" class="sr-only">Password Confirmation</label>
-    <InputText type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirmation" @bind-Value="@registerParameters.PasswordConfirm" />
-    <ValidationMessage For="@(() => registerParameters.PasswordConfirm)" />
+    <InputText type="password" id="inputPasswordConfirm" class="form-control" placeholder="Password Confirmation" @bind-Value="@RegisterParameters.PasswordConfirm"/>
+    <ValidationMessage For="@(() => RegisterParameters.PasswordConfirm)"/>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
 
-    <label class="text-danger">@error</label>
+    <label class="text-danger">@Error</label>
     <NavLink href="login">
         <h6 class="font-weight-normal text-center">Already have an account? Click here to login</h6>
     </NavLink>
@@ -33,20 +33,21 @@
 
 @functions{
 
-    RegisterParameters registerParameters { get; set; } = new RegisterParameters();
-    string error { get; set; }
+    RegisterParameters RegisterParameters { get; } = new RegisterParameters();
+    string Error { get; set; }
 
     async Task OnSubmit()
     {
-        error = null;
+        Error = null;
         try
         {
-            await authStateProvider.Register(registerParameters);
-            navigationManager.NavigateTo("");
+            await AuthStateProvider.Register(RegisterParameters);
+            NavigationManager.NavigateTo("");
         }
         catch (Exception ex)
         {
-            error = ex.Message;
+            Error = ex.Message;
         }
     }
+
 }

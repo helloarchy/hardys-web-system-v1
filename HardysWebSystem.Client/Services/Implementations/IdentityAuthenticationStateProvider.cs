@@ -1,17 +1,13 @@
-﻿using HardysWebSystem.Client.Services.Contracts;
-using HardysWebSystem.Shared;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.JSInterop;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using HardysWebSystem.Client.Services.Contracts;
+using HardysWebSystem.Shared;
+using Microsoft.AspNetCore.Components.Authorization;
 
-namespace HardysWebSystem.Client.States
+namespace HardysWebSystem.Client.Services.Implementations
 {
     public class IdentityAuthenticationStateProvider : AuthenticationStateProvider
     {
@@ -63,7 +59,7 @@ namespace HardysWebSystem.Client.States
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine("Request failed:" + ex.ToString());
+                Console.WriteLine("Request failed:" + ex);
             }
 
             return new AuthenticationState(new ClaimsPrincipal(identity));
